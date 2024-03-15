@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect()->route('contacts');
+    return redirect()->route('contacts.index');
 })->name('home');
 
-Route::get('/contacts', function () {
-    return view('contacts');
-})->name('contacts');
+Route::get('/contacts', ContactController::class . '@index')->name('contacts.index');
+Route::get('/contacts/edit', ContactController::class . '@edit')->name('contacts.edit');
+Route::get('/contacts/show', ContactController::class . '@show')->name('contacts.view');
+Route::get('/contacts/new', ContactController::class . '@create')->name('contacts.create');
+Route::post('/contacts/store', ContactController::class . '@store')->name('contacts.store');

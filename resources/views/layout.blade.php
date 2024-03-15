@@ -24,13 +24,13 @@
                     </div>
                 </a></div>
             <nav class="flex items-center space-x-4 leading-5 sm:space-x-6">
-                <a class=" font-medium text-gray-900 sm:block" href="{{ route('contacts') }}">Contacts</a>
+                <a class=" font-medium text-gray-900 sm:block" href="{{ route('contacts.index') }}">Contacts</a>
                 <a class=" font-medium text-gray-900 sm:block" href="/tags">Tags</a>
                 <a class=" font-medium text-gray-900 sm:block" href="/projects">Projects</a>
                 <a class=" font-medium text-gray-900 sm:block" href="/about">About</a>
             </nav>
         </header>
-        <main class="mb-auto">
+        <main class="mb-auto p-5">
             @yield('content')
         </main>
     </div>
