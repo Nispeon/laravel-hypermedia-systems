@@ -23,5 +23,5 @@ Route::get('/contacts/edit/{contact}', ContactController::class . '@edit')->name
 Route::get('/contacts/show/{contact}', ContactController::class . '@show')->name('contacts.view');
 Route::get('/contacts/new', ContactController::class . '@create')->name('contacts.create');
 Route::post('/contacts/store', ContactController::class . '@store')->name('contacts.store');
-Route::put('/contacts/update/{contact}', ContactController::class . '@update')->name('contacts.update');
-Route::delete('/contacts/delete/{contact}', ContactController::class . '@destroy')->name('contacts.destroy');
+Route::put('/contacts/{contact}', ContactController::class . '@update')->name('contacts.update');
+Route::delete('/contacts/{contact}', ContactController::class . '@destroy')->name('contacts.destroy');

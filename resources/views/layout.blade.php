@@ -11,8 +11,9 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet"/>
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.11" crossorigin="anonymous"></script>
 </head>
-<body class="antialiased">
+<body class="antialiased" hx-boost="true">
 <section class="mx-auto max-w-3xl px-4 sm:px-6 xl:max-w-5xl xl:px-0">
     <div class="flex h-screen flex-col justify-between font-sans">
         <header class="flex items-center justify-between py-10">

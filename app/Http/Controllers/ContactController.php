@@ -76,7 +76,7 @@ class ContactController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Contact $contact)
+    public function update(Request $request, Contact $contact): \Illuminate\Http\RedirectResponse
     {
         $request->validate([
             'firstname' => 'required',
@@ -94,10 +94,10 @@ class ContactController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Contact $contact)
+    public function destroy(Contact $contact): \Illuminate\Http\RedirectResponse
     {
-        $contact->delete();
+//        $contact->delete();
 
-        return redirect()->route('contacts.index');
+        return redirect()->route('contacts.index', status: 303);
     }
 }

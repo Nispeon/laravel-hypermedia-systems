@@ -41,9 +41,11 @@
     </form>
 
     <a href="{{ route('contacts.index') }}" class="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded my-3">Back</a>
-    <form method="POST" action="{{ route('contacts.destroy', [$contact]) }}">
-        @csrf
-        @method('DELETE')
-        <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded my-3">Delete</button>
-    </form>
+    @csrf
+    <button hx-target="body"
+            hx-push-url="true"
+            hx-confirm="Are you sure you want to delete this contact? This action cannot be undone."
+            hx-delete="{{ route('contacts.destroy', [$contact]) }}"
+            hx-include="[name='_token']"
+            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded my-3">Delete</button>
 @stop
