@@ -21,9 +21,8 @@ class ContactController extends Controller
                 ->get();
         } else {
             $contacts = Contact::all();
+            $contacts = Contact::all();
         }
-
-        dump($contacts);
 
         return view('contacts.index', [
             'contacts' => $contacts,
@@ -43,14 +42,13 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        dump($request->input());
-        $contact = new Contact();
-        $contact->firstname = $request->input('firstname');
-        $contact->lastname = $request->input('lastname');
-        $contact->email = $request->input('email');
-        $contact->phone = $request->input('phone') ?? '';
+        $request->validate([
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'email' => 'required|email',
+        ]);
 
-        $contact->save();
+        Contact::create($request->all());
 
         return redirect()->route('contacts.index');
     }
@@ -80,7 +78,17 @@ class ContactController extends Controller
      */
     public function update(Request $request, Contact $contact)
     {
-        //
+        $request->validate([
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'email' => 'required|email',
+        ]);
+
+        $data = $request->except(['_token']);
+
+        $contact->update($data);
+
+        return redirect()->route('contacts.index');
     }
 
     /**
@@ -88,6 +96,8 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
+        $contact->delete();
+
+        return redirect()->route('contacts.index');
     }
 }

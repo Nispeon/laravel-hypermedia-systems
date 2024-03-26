@@ -19,7 +19,9 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/contacts', ContactController::class . '@index')->name('contacts.index');
-Route::get('/contacts/edit', ContactController::class . '@edit')->name('contacts.edit');
-Route::get('/contacts/show', ContactController::class . '@show')->name('contacts.view');
+Route::get('/contacts/edit/{contact}', ContactController::class . '@edit')->name('contacts.edit');
+Route::get('/contacts/show/{contact}', ContactController::class . '@show')->name('contacts.view');
 Route::get('/contacts/new', ContactController::class . '@create')->name('contacts.create');
 Route::post('/contacts/store', ContactController::class . '@store')->name('contacts.store');
+Route::put('/contacts/update/{contact}', ContactController::class . '@update')->name('contacts.update');
+Route::delete('/contacts/delete/{contact}', ContactController::class . '@destroy')->name('contacts.destroy');
