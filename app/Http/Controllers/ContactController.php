@@ -21,7 +21,6 @@ class ContactController extends Controller
                 ->get();
         } else {
             $contacts = Contact::all();
-            $contacts = Contact::all();
         }
 
         return view('contacts.index', [
@@ -79,9 +78,9 @@ class ContactController extends Controller
     public function update(Request $request, Contact $contact): \Illuminate\Http\RedirectResponse
     {
         $request->validate([
-            'firstname' => 'required',
+            'firstname' => 'required|min:2',
             'lastname' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:contacts,email',
         ]);
 
         $data = $request->except(['_token']);
@@ -99,5 +98,18 @@ class ContactController extends Controller
 //        $contact->delete();
 
         return redirect()->route('contacts.index', status: 303);
+    }
+
+    public function checkEmail(Request $request)
+    {
+        try {
+            $request->validate([
+                'email' => 'required|email|unique:contacts,email',
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return 'Email not available';
+        }
+
+        return '';
     }
 }

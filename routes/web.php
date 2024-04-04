@@ -25,3 +25,4 @@ Route::get('/contacts/new', ContactController::class . '@create')->name('contact
 Route::post('/contacts/store', ContactController::class . '@store')->name('contacts.store');
 Route::put('/contacts/{contact}', ContactController::class . '@update')->name('contacts.update');
 Route::delete('/contacts/{contact}', ContactController::class . '@destroy')->name('contacts.destroy');
+Route::get('/contacts/{contactId}/email', ContactController::class . '@checkEmail')->name('contacts.checkEmail');
